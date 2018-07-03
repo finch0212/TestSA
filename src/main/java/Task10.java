@@ -17,7 +17,10 @@ public class Task10
         }
         while(!exit)
         {
-            System.out.println("КОМАНДЫ:\n1. Вывести массив.\n2. Увеличить элемент массива на 10%.\n3. Выход");
+            System.out.println("КОМАНДЫ:\n" +
+                    "1. Вывести массив.\n" +
+                    "2. Увеличить элемент массива на 10%.\n" +
+                    "3. Выход");
             int command = in.nextInt();
             if(command==1)
             {
