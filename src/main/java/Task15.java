@@ -1,5 +1,3 @@
-import com.sun.org.apache.bcel.internal.generic.Select;
-
 import java.util.Random;
 import java.util.Scanner;
 
