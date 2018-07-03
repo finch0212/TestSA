@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3c8fd3b8-fed6-438a-a711-0b493d78d807" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/Task10.java" afterPath="$PROJECT_DIR$/src/main/java/Task10.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Task15.java" afterPath="$PROJECT_DIR$/src/main/java/Task15.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -58,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Task10.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Task10.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Task10.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="22" column="32" lean-forward="false" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+            <state relative-caret-position="286">
+              <caret line="49" column="9" lean-forward="false" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -82,7 +81,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Task15.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Task15.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Task15.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="113">
@@ -127,8 +126,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Form.java" />
         <option value="$PROJECT_DIR$/src/main/java/MainForm.java" />
         <option value="$PROJECT_DIR$/src/main/java/MainForm.form" />
-        <option value="$PROJECT_DIR$/src/main/java/Task10.java" />
         <option value="$PROJECT_DIR$/src/main/java/Task15.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Task10.java" />
       </list>
     </option>
   </component>
@@ -832,20 +831,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Task10.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Task15.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="32" lean-forward="false" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+        <state relative-caret-position="113">
+          <caret line="140" column="34" lean-forward="false" selection-start-line="140" selection-start-column="34" selection-end-line="140" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Task15.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Task10.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="140" column="34" lean-forward="false" selection-start-line="140" selection-start-column="34" selection-end-line="140" selection-end-column="34" />
+        <state relative-caret-position="286">
+          <caret line="49" column="9" lean-forward="false" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

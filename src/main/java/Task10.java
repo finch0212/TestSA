@@ -48,6 +48,5 @@ public class Task10
                 System.out.println("Введите верную команду.");
             }
         }
-
     }
 }
