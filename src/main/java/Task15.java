@@ -273,20 +273,20 @@ public class Task15
     public static void main(String[] args)
     {
         Scanner in = new Scanner(System.in);
-        System.out.println("Введите число: ");
+        System.out.print("Введите строку: ");
         String number = in.nextLine();
         number = number.toUpperCase();
         System.out.println();
-        char c2 = ' ';
-        char c = '*';
+        char nothingChar = ' ';
+        char star = '*';
         for(int k = 0; k < 7;k++)
         {
             for(int i = 0; i < number.length(); i++)
             {
                 for(int j = 0; j < 6; j++)
                 {
-                    if(Select(number.charAt(i))[k][j]==1)System.out.print(c);
-                    else System.out.print(c2);
+                    if(Select(number.charAt(i))[k][j]==1)System.out.print(star);
+                    else System.out.print(nothingChar);
                 }
             }
             System.out.print("\n");
