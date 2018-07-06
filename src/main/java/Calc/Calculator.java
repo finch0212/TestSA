@@ -2,6 +2,8 @@ package Calc;
 
 public class Calculator {
 
+    public int pubint = 0;
+
     public int Sum(int a, int b)
     {
         return  a+b;

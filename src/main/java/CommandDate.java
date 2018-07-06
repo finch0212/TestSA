@@ -4,7 +4,7 @@ import java.util.Date;
 public class CommandDate extends Command
 {
     @Override
-    String Execute() {
+    public String Execute() {
 
         Date dateNow = new Date();
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("E yyyy.MM.dd");

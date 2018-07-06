@@ -8,7 +8,13 @@ import static org.mockito.Mockito.*;
 
 public class CalculatorTest {
 
-    Calculator calc = new Calculator();
+    Calculator calc ;
+
+    @Before
+    public void BeforeTests()
+    {
+        calc = new Calculator();
+    }
 
     @Test
     public void SumTest()
