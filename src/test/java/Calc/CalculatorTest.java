@@ -9,6 +9,7 @@ import static org.mockito.Mockito.*;
 public class CalculatorTest {
 
     Calculator calc = new Calculator();
+
     @Test
     public void SumTest()
     {
