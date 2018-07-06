@@ -1,3 +1,5 @@
+package Practice1;
+
 import java.util.Random;
 import java.util.Scanner;
 
