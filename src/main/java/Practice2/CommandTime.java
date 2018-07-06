@@ -16,6 +16,6 @@ public class CommandTime extends Command
     public CommandTime()
     {
         name = "time";
-        desc = "Get vurrent time on this computer";
+        desc = "Get current time on this computer";
     }
 }
