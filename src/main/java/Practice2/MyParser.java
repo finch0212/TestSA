@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MyParser {
 
-    List<String> Parse(String str, char delimiter)
+    public List<String> Parse(String str, char delimiter)
     {
         String string = str;
         List<String> strmass = new ArrayList<String>();
