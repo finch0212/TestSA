@@ -48,10 +48,25 @@ public class DBController {
     public static void CreateDB()
     {
         try {
-            /*statement.execute("create table authors(" +
-                    "id integer primary key auto_increment, " + "name varchar(100)," +
-                    "lastname varchar(100));");*/
-            //statement.execute("CREATE TABLE Books (id integer NOT NULL AUTO_INCREMENT, title varchar(255) NOT NULL, author_id integer NOT NULL, year integer, CONSTRAINT PK_Books PRIMARY KEY (id));");
+            statement.execute("CREATE TABLE authors\n" +
+                    "(\n" +
+                    "id integer NOT NULL AUTO_INCREMENT,\n" +
+                    "name varchar(255),\n" +
+                    "lastname varchar(255),\n" +
+                    "CONSTRAINT PK_authors PRIMARY KEY (id)\n" +
+                    ");\n" +
+                    "\n" +
+                    "CREATE TABLE books\n" +
+                    "(\n" +
+                    "id integer NOT NULL AUTO_INCREMENT,\n" +
+                    "title varchar(255) NOT NULL,\n" +
+                    "author_id integer NOT NULL,\n" +
+                    "year integer,\n" +
+                    "CONSTRAINT PK_books PRIMARY KEY (id)\n" +
+                    ");\n" +
+                    "\n" +
+                    "ALTER TABLE books ADD CONSTRAINT FK_books_\n" +
+                    "FOREIGN KEY (author_id) REFERENCES authors (id) ON DELETE CASCADE;");
 
         }
         catch (Exception e)

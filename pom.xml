@@ -15,7 +15,6 @@
             <artifactId>java.jdbc</artifactId>
             <version>0.7.7</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
         <dependency>
             <groupId>com.h2database</groupId>
