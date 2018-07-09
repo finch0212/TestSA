@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-public class _2Task1
+public class Main
 {
     public static String currPath;
     public static Map map = new HashMap<String, Command>();
@@ -41,7 +41,7 @@ public class _2Task1
             }
             else
             {
-                File folder = new File(_2Task1.currPath);
+                File folder = new File(Main.currPath);
                 File[] listOfFiles = folder.listFiles();
 
                 for (File file : listOfFiles) {

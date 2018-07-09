@@ -16,7 +16,7 @@ public class CommandCd  extends Command
             str += (s+" ");
         }
         str = str.substring(0,str.length()-1);
-        _2Task1.currPath = str;
+        Main.currPath = str;
         return ("Working derictory changed on" + str);
     }
 

@@ -1,8 +1,5 @@
 package Practice2;
 
-import Practice2.Command;
-import Practice2._2Task1;
-
 import java.util.Iterator;
 import java.util.Map;
 
@@ -11,7 +8,7 @@ public class CommandHelp extends Command
     @Override
     String Execute() {
         System.out.println("All commands:");
-        Iterator<Map.Entry<String, Object>> iterator = _2Task1.map.entrySet().iterator();
+        Iterator<Map.Entry<String, Object>> iterator = Main.map.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<String, Object> entry = iterator.next();
             Command c = (Command) entry.getValue();
@@ -22,7 +19,7 @@ public class CommandHelp extends Command
     }
     @Override
     String Execute(String[] args) {
-        Command c = (Command) _2Task1.map.get(args[0]);
+        Command c = (Command) Main.map.get(args[0]);
         System.out.println("Command \"" + c.name + "\"" + ": " + c.desc);
         return "";
     }
