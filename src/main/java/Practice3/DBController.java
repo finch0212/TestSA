@@ -9,7 +9,6 @@ public class DBController {
     public int idACount;
     public int idBCount;
 
-
     public static void Connect()
     {
         try {
