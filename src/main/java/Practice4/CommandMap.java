@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class CommandMap implements Command {
 
-    private static Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    private static Map<String, String> map = new HashMap<>();
     private static Scanner in = new Scanner(System.in);
 
     @Override
@@ -25,7 +25,7 @@ public class CommandMap implements Command {
 
                     case 3:
                         System.out.print("Введите ключ искомого элемента: ");
-                        System.out.println("Элемент: " + map.get(in.nextInt()));
+                        System.out.println("Элемент: " + map.get(in.next()));
                         break;
                     case 4:
                         addElementByKeyAndValue();
@@ -33,7 +33,7 @@ public class CommandMap implements Command {
 
                     case 5:
                         System.out.print("Введите ключ удаляемоого элемента: ");
-                        System.out.println("Элемент удален: " + map.remove(in.nextInt()));
+                        System.out.println("Элемент удален: " + map.remove(in.next()));
                         break;
 
                     default:
@@ -57,7 +57,7 @@ public class CommandMap implements Command {
 
     private void showAllElements() {
         System.out.println("Список элементов:");
-        for (int i : map.values()
+        for (String  i : map.values()
                 ) {
             System.out.print(i + " ");
         }
@@ -66,10 +66,10 @@ public class CommandMap implements Command {
 
     private void addElementByKeyAndValue() {
         System.out.print("Введите ключ: ");
-        int k = in.nextInt();
+        String  k = in.next();
         System.out.println();
         System.out.print("Введите добавляемый элемент: ");
-        int v = in.nextInt();
+        String  v = in.next();
         map.put(k, v);
         System.out.println("Элемент добавлен.");
     }

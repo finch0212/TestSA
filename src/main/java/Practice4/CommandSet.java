@@ -5,7 +5,7 @@ import java.util.*;
 
 public class CommandSet implements Command {
 
-    static final Set<Integer> set = new HashSet<Integer>();
+    static final Set<String > set = new HashSet<>();
     static final Scanner in = new Scanner(System.in);
 
     @Override
@@ -23,19 +23,19 @@ public class CommandSet implements Command {
 
                 case 3:
                     System.out.print("Введите искомый элемент: ");
-                    System.out.println(set.contains(in.nextInt()) ? "Элемент присутствует." : "Элемента нет.");
+                    System.out.println(set.contains(in.next()) ? "Элемент присутствует." : "Элемента нет.");
                     break;
 
                 case 4:
                     System.out.print("Введите добавляемый элемент: ");
-                    set.add(in.nextInt());
+                    set.add(in.next());
                     System.out.println("Элемент добавлен.");
                     break;
 
                 case 5:
                     System.out.print("Введите удаляемый элемент: ");
                     try {
-                        set.remove(in.nextInt());
+                        set.remove(in.next());
                         System.out.println("Элемент удален.");
                     } catch (Exception e) {
                         System.out.println("Такого элемента нет.");
@@ -50,7 +50,7 @@ public class CommandSet implements Command {
 
     private void showAllElements() {
         System.out.println("Список элементов:");
-        for (int i : set) {
+        for (String  i : set) {
             System.out.print(i + " ");
         }
         System.out.println();

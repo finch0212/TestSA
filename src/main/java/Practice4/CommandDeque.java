@@ -4,7 +4,7 @@ import java.util.*;
 
 public class CommandDeque implements Command {
 
-    private final Deque<Integer> deque = new LinkedList<>();
+    private final Deque<String> deque = new LinkedList<>();
     private final Scanner in = new Scanner(System.in);
     @Override
     public void execute() {
@@ -23,7 +23,7 @@ public class CommandDeque implements Command {
 
                     case 3:
                         System.out.println("Введите искомый элемент: ");
-                        System.out.println(deque.contains(in.nextInt()) ? "Элемент присутствует." : "Элемента нет.");
+                        System.out.println(deque.contains(in.next()) ? "Элемент присутствует." : "Элемента нет.");
                         break;
 
                     case 4:
@@ -70,19 +70,19 @@ public class CommandDeque implements Command {
 
     private void addLast() {
         System.out.print("Введите добавляемый элемент: ");
-        deque.addLast(in.nextInt());
+        deque.addLast(in.next());
         System.out.println("Элемент добавлен.");
     }
 
     private void addFirst() {
         System.out.print("Введите добавляемый элемент: ");
-        deque.addFirst(in.nextInt());
+        deque.addFirst(in.next());
         System.out.println("Элемент добавлен.");
     }
 
     private void showAllElements() {
         System.out.println("Список элементов:");
-        for (int i: deque) {
+        for (String i: deque) {
             System.out.print(i + " ");
         }
         System.out.println();

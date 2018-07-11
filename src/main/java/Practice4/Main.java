@@ -34,7 +34,7 @@ public class Main {
                     break;
 
                 case 4:
-                    COMMAND_MAP.get("COMMAND_MAP").execute();
+                    COMMAND_MAP.get("map").execute();
                     break;
 
                 default:

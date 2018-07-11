@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CommandList implements Command {
-    private final List<Integer> list = new ArrayList<>();
+    private final List<String> list = new ArrayList<>();
     private final Scanner in = new Scanner(System.in);
 
     @Override
@@ -24,12 +24,12 @@ public class CommandList implements Command {
 
                     case 3:
                         System.out.print("Введите искомый элемент: ");
-                        System.out.println(list.contains(in.nextInt()) ? "Элемент присутствует." : "Элемента нет.");
+                        System.out.println(list.contains(in.next()) ? "Элемент присутствует." : "Элемента нет.");
                         break;
 
                     case 4:
                         System.out.print("Введите добавляемый элемент: ");
-                        list.add(in.nextInt());
+                        list.add(in.next());
                         break;
 
                     case 5:
@@ -62,7 +62,7 @@ public class CommandList implements Command {
 
     private void addElement() {
         System.out.print("Введите добавляемый элемент: ");
-        int i = in.nextInt();
+        String i = in.next();
         System.out.println();
         System.out.print("Введите индекс: ");
         int ind = in.nextInt();
@@ -72,7 +72,7 @@ public class CommandList implements Command {
 
     private void showAllElements() {
         System.out.println("Список элементов:");
-        for (int i : list) {
+        for (String i : list) {
             System.out.print(i + " ");
         }
         System.out.println();
