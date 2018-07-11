@@ -1,8 +1,6 @@
 package Practice4;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     private static final Map<String, Command> COMMAND_MAP = buildCommandMap();
