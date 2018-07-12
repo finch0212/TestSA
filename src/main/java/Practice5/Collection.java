@@ -1,10 +1,10 @@
 package Practice5;
 
-public interface Collection {
+public interface Collection<T> {
     int size();
     boolean isEmpty();
-    boolean contains(Object item);
-    boolean add(Object item);
-    boolean remove(Object item);
+    boolean contains(T item);
+    boolean add(T item);
+    boolean remove(T item);
     void clear();
 }

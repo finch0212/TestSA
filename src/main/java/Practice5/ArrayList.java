@@ -1,14 +1,23 @@
 package Practice5;
 
-public class ArrayList implements List {
-    public int size;
-    private int capacity;
-    private Object[] mass;
+public class ArrayList<T> implements List<T> {
+    private static final int NOT_FOUND = -1;
 
-    ArrayList() {
+    public int size;
+    private T[] array;
+
+    public ArrayList() {
+        initialize(10);
+    }
+
+    public ArrayList(int capacity) {
+        initialize(capacity);
+    }
+
+    private void initialize(int capacity) {
         size = 0;
-        capacity = 10;
-        mass = new Object[capacity];
+        //noinspection unchecked
+        array = (T[]) new Object[capacity];
     }
 
     public int size() {
@@ -19,106 +28,127 @@ public class ArrayList implements List {
         return size == 0;
     }
 
-    public boolean contains(Object item) {
-        for (Object o : mass) {
+    public boolean contains(T item) {
+        for (T o : array) {////////////////////////////////
             if (o.equals(item)) return true;
         }
         return false;
     }
 
-    public boolean add(Object item) {
-        if (size < capacity) {
-            mass[size++] = item;
-        } else {
-            capacityIncrease();
-            mass[size++] = item;
-        }
+    public boolean add(T item) {
+        extendArrayAsNeeded();
+        array[size++] = item;
         return true;
     }
 
-    public boolean remove(Object item) {
-        for (int i = 0; i < size; i++) {
-            if (mass[i].equals(item)) {
-                for (int j = i; j < size - 1; j++) {
-                    mass[j] = mass[j + 1];
-                }
-                size--;
-                return true;
+    private void extendArrayAsNeeded() {
+        if (size == array.length) {
+            int newCapacity = array.length + (array.length >> 1) + 1;
+            //noinspection unchecked
+            T[] newArray = (T[]) new Object[newCapacity];
+            for (int i = 0; i < size; i++) {
+                newArray[i] = array[i];
             }
+            array = newArray;
         }
-        return false;
+    }
+
+    public boolean remove(T item) {
+        int index = indexOf(item);
+        if (index != NOT_FOUND) {
+            remove(index);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void clear() {
-        size = 0;
-        capacity = 10;
-        mass = new Object[capacity];
+        initialize(10);
     }
 
-    public void add(int index, Object item) {
+    public void add(int index, T item) {
+        checkForRange(index);
+        extendArrayAsNeeded();
         if (index == size) {
             add(item);
-            return;
-        } else if (index < size) {
-            if (size == capacity) capacityIncrease();
-            for (int i = size; i > index; i--) {
-                mass[i] = mass[i - 1];
-            }
-            mass[index] = item;
-            size++;
         } else {
-            //если нет индекса?////////////////////////////////////////////////////////////////////////////
+            for (int i = size; i > index; i--) {
+                array[i] = array[i - 1];
+            }
+            array[index] = item;
+            size++;
         }
     }
 
-
-    public void set(int index, Object item) {
-        mass[index] = item;
-        //если нет индекса?////////////////////////////////////////////////////////////////////////////
+    public void set(int index, T item) {
+        checkForRange(index);
+        array[index] = item;
     }
 
-    public Object get(int index) {
-        return mass[index];
+    public T get(int index) {
+        checkForRange(index);
+        return array[index];
     }
 
-    public int indexOf(Object item) {
-        for (int i = 0; i < size; i++) {
-            if (mass[i].equals(item)) return i;
+    public int indexOf(T item) {
+        if (item == null) {
+            for (int i = 0; i < size; i++) {
+                if (array[i] == null) return i;
+            }
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (item.equals(array[i])) return i;
+            }
         }
-        return -1;/////////////////////////////////////////////////////////////////////////////////////
+        return NOT_FOUND;
     }
 
-    public int lastIndexOf(Object item) {
-        for (int i = size - 1; i >= 0; i--) {
-            if (mass[i].equals(item)) return i;
+    public int lastIndexOf(T item) {
+        if(item == null){
+            for (int i = size - 1; i >= 0; i--) {
+                if (array[i] == null) return i;
+            }
         }
-        return -1;/////////////////////////////////////////////////////////////////////////////////////
+        else {
+            for (int i = size - 1; i >= 0; i--) {
+                if (item.equals(array[i])) return i;
+            }
+        }
+        return NOT_FOUND;
 
     }
 
     public void remove(int index) {
-        for (int i = index; i < size-1; i++) {
-            mass[i] = mass[i + 1];
+        checkForRange(index);
+        for (int i = index; i < size - 1; i++) {
+            array[i] = array[i + 1];
         }
-        size--;
+        array[--size] = null;
 
+    }
+
+    private void checkForRange(int index) {
+        if ((index < 0) || (index >= size)) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     public List subList(int from, int to) {
-        return null;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    private void capacityIncrease() {
-        capacity *= 1.5;
-        Object[] tmpmass = new Object[capacity];
-        for (int i = 0; i < size; i++) {
-            tmpmass[i] = mass[i];
+        checkForRange(from, to);
+        List result = new ArrayList(to - from);
+        for (int i = from; i < to; i++) {
+            result.add(array[i]);
         }
-        mass = tmpmass;
+        return result;
+    }
+
+    private void checkForRange(int from, int to) {
+        checkForRange(from);
+        checkForRange(to);
+        if (from>to){
+            throw new IndexOutOfBoundsException();
+        }
     }
 }
 
