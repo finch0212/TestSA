@@ -1,4 +1,4 @@
-package Practice4;
+package Practice5;
 
 public interface Collection {
     int size();
