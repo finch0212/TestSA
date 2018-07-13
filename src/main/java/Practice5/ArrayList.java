@@ -1,5 +1,10 @@
 package Practice5;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
 public class ArrayList<T> implements List<T> {
     private static final int NOT_FOUND = -1;
 
@@ -105,12 +110,11 @@ public class ArrayList<T> implements List<T> {
     }
 
     public int lastIndexOf(T item) {
-        if(item == null){
+        if (item == null) {
             for (int i = size - 1; i >= 0; i--) {
                 if (array[i] == null) return i;
             }
-        }
-        else {
+        } else {
             for (int i = size - 1; i >= 0; i--) {
                 if (item.equals(array[i])) return i;
             }
@@ -146,9 +150,31 @@ public class ArrayList<T> implements List<T> {
     private void checkForRange(int from, int to) {
         checkForRange(from);
         checkForRange(to);
-        if (from>to){
+        if (from > to) {
             throw new IndexOutOfBoundsException();
         }
+    }
+
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private int index = 0;
+            private T current = array[0];
+
+            @Override
+            public boolean hasNext() {
+                return index < size;
+            }
+
+            @Override
+            public T next() throws IndexOutOfBoundsException {
+                if (!this.hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return array[index++];
+            }
+        };
     }
 }
 
