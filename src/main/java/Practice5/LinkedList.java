@@ -1,6 +1,9 @@
 package Practice5;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
 public class LinkedList<T> implements List<T>, Deque<T> {
     int size;
@@ -16,6 +19,10 @@ public class LinkedList<T> implements List<T>, Deque<T> {
             this.item = item;
             this.prev = prev;
             this.next = next;
+        }
+
+        public boolean hasNext() {
+            return next != null;
         }
     }
 
@@ -44,11 +51,6 @@ public class LinkedList<T> implements List<T>, Deque<T> {
         } else {
             return false;
         }
-    }
-
-    private Node<T> getNode(T item) {
-        //todo
-        return null;
     }
 
     public void clear() {
@@ -126,7 +128,7 @@ public class LinkedList<T> implements List<T>, Deque<T> {
     private void checkForRange(int from, int to) {
         checkForRange(from);
         checkForRange(to);
-        if (from>to){
+        if (from > to) {
             throw new IndexOutOfBoundsException();
         }
     }
@@ -221,5 +223,37 @@ public class LinkedList<T> implements List<T>, Deque<T> {
             }
             return current;
         }
+    }
+
+    private Node<T> getNode(T item) {
+        Node current = first;
+        for (int i = 0; i < size; i++) {
+            if (current.item.equals(item)) return current;
+            current = current.next;
+        }
+        return null;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private Node<T> current = first;
+
+            @Override
+            public boolean hasNext() {
+
+                return this.current != null;
+            }
+
+            @Override
+            public T next() throws IndexOutOfBoundsException {
+                if (!this.hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                T value = current.item;
+                current = current.next;
+                return value;
+            }
+        };
     }
 }
