@@ -27,8 +27,6 @@ public class CheckLinkedList {
         printList(list);
         LinkedList<Integer> subList = (LinkedList<Integer>) list.subList(0, 5);
         printList(subList);
-
-
     }
 
     public static void printList(LinkedList<Integer> list) {
