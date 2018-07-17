@@ -6,27 +6,30 @@ public class Election {
 
     private static Scanner in = new Scanner(System.in);
     private static String[] names = new String[]{"Пыня", "Нэвэльный"};
-    private static Map<String ,ArrayList<Voter>> results = new HashMap<>();
-    private static Map<Integer,String> namesWithNumber = new HashMap<>();
+    private static Map<String, ArrayList<Voter>> results = new HashMap<>();
+    private static Map<Integer, String> namesWithNumber = new HashMap<>();
 
     public static void main(String[] args) {
         init();
         while (true) {
             showOutMenu();
             switch (in.nextInt()) {
-                case 1: electionProcess();
+                case 1:
+                    electionProcess();
                     break;
-                case 2: showOutStatistics();
+                case 2:
+                    showOutStatistics();
                     break;
-                default: return;
+                default:
+                    return;
             }
         }
     }
 
     private static void init() {
-        for(int i = 0;i < names.length;i++){
-            results.put(names[i],new ArrayList<Voter>());
-            namesWithNumber.put((i+1),names[i]);
+        for (int i = 0; i < names.length; i++) {
+            results.put(names[i], new ArrayList<Voter>());
+            namesWithNumber.put((i + 1), names[i]);
         }
     }
 
@@ -37,14 +40,14 @@ public class Election {
         int age = in.nextInt();
         System.out.println();
         System.out.println("Ввыберите кандидата: ");
-        for(int i = 0;i < names.length;i++){
-            System.out.println(String.format("%d. %s",(i+1),names[i]));
+        for (int i = 0; i < names.length; i++) {
+            System.out.println(String.format("%d. %s", (i + 1), names[i]));
         }
         int candidateNumber = in.nextInt();
         String candidate = namesWithNumber.get(candidateNumber);
         ArrayList<Voter> list = results.get(candidate);
-        list.add(createVoter(genger==1? VoterBase.Gender.Man: VoterBase.Gender.Woman,age));
-        results.put(candidate,list);
+        list.add(createVoter(genger == 1 ? VoterBase.Gender.Man : VoterBase.Gender.Woman, age));
+        results.put(candidate, list);
         System.out.println("Ваш голос обработан.");
     }
 
@@ -55,20 +58,21 @@ public class Election {
     }
 
     private static void showOutStatistics() {
-            for(ArrayList<Voter> list : results.values()){
-                for(Voter v:list){
-                    System.out.println(v.getGenger() + " " + v.getAgeCategory());
-                }
-
+        for (ArrayList<Voter> list : results.values()) {
+            for (Voter v : list) {
+                System.out.println(v.getGenger() + " " + v.getAgeCategory());
             }
+
+        }
     }
 
     private static Voter createVoter(VoterBase.Gender gender, int age) {
-        VoterBase.AgeCategory ageCat = VoterBase.AgeCategory.Young;;
+        VoterBase.AgeCategory ageCat = VoterBase.AgeCategory.Young;
+        ;
         if (age >= 18 && age <= 29) ageCat = VoterBase.AgeCategory.Young;
         else if (age >= 30 && age <= 49) ageCat = VoterBase.AgeCategory.Middle;
         else if (age >= 50 && age <= 64) ageCat = VoterBase.AgeCategory.Old;
         else if (age >= 65) ageCat = VoterBase.AgeCategory.Pension;
-        return gender == VoterBase.Gender.Man?new Man(ageCat):new Woman(ageCat);
+        return gender == VoterBase.Gender.Man ? new Man(ageCat) : new Woman(ageCat);
     }
 }
