@@ -5,7 +5,7 @@ import java.util.*;
 public class Election {
 
     private static Scanner in = new Scanner(System.in);
-    private static String[] names = new String[]{"Пыня", "Нэвэльный"};
+    private static String[] names = new String[]{"Пыня", "Сисян"};
     private static Map<String, ArrayList<Voter>> results = new HashMap<>();
     private static Map<Integer, String> namesWithNumber = new HashMap<>();
 
@@ -62,7 +62,6 @@ public class Election {
             for (Voter v : list) {
                 System.out.println(v.getGenger() + " " + v.getAgeCategory());
             }
-
         }
     }
 
