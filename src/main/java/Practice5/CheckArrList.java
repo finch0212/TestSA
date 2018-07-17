@@ -24,13 +24,14 @@ public class CheckArrList {
         System.out.println("lastIndexOf 5: " + mass.lastIndexOf(5));
         List arr = mass.subList(2, 3);
         System.out.println("SubList:");
+        //noinspection unchecked
         printArr((ArrayList) arr);
     }
 
-    public static void printArr(ArrayList<Integer> mass) {
+    private static <T> void printArr(ArrayList<T> mass) {
         System.out.println("Size = " + mass.size);
         System.out.print("Mass: ");
-        for (Integer i : mass) {
+        for (T i : mass) {
             System.out.print(i + " ");
         }
         System.out.println();

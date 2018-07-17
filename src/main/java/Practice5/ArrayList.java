@@ -15,7 +15,7 @@ public class ArrayList<T> implements List<T> {
         initialize(10);
     }
 
-    public ArrayList(int capacity) {
+    private ArrayList(int capacity) {
         initialize(capacity);
     }
 

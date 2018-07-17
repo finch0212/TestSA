@@ -1,46 +1,57 @@
 package Practice7;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Election {
 
     private static Scanner in = new Scanner(System.in);
+    private static String[] names = new String[]{"Пыня", "Нэвэльный"};
     private static Map<String ,ArrayList<Voter>> results = new HashMap<>();
+    private static Map<Integer,String> namesWithNumber = new HashMap<>();
 
     public static void main(String[] args) {
-        results.put("Путин", new ArrayList<Voter>());
-        results.put("Грудинин", new ArrayList<Voter>());
-
+        init();
         while (true) {
-            System.out.println("1 – Проголосовать\n" +
-                    "2 – Вывести статистику\n" +
-                    "3 – Выход»");
+            showOutMenu();
             switch (in.nextInt()) {
-                case 1: {
-                    System.out.println("Введите пол: " + "\n1. Мужской" + "\n2. Женский");
-                    int genger = in.nextInt();
-                    System.out.print("Введите возраст: ");
-                    int age = in.nextInt();
-                    System.out.println();
-                    System.out.println("Ввыберите кандидата: " + "\n1. Путин" + "\n2. Грудинин");
-                    int candNum = in.nextInt();
-                    String candidate = candNum==1?"Путин":"Грудинин";
-                    ArrayList<Voter> list = results.get(candidate);
-                    list.add(createVoter(genger==1? VoterBase.Gender.Man: VoterBase.Gender.Woman,age));
-                    results.put(candidate,list);
-                    System.out.println("Ваш голос обработан.");
-                }
-                break;
-                case 2:
-                    showOutStatistics();
+                case 1: electionProcess();
                     break;
-                default:
-                    return;
+                case 2: showOutStatistics();
+                    break;
+                default: return;
             }
         }
+    }
+
+    private static void init() {
+        for(int i = 0;i < names.length;i++){
+            results.put(names[i],new ArrayList<Voter>());
+            namesWithNumber.put((i+1),names[i]);
+        }
+    }
+
+    private static void electionProcess() {
+        System.out.println("Введите пол: " + "\n1. Мужской" + "\n2. Женский");
+        int genger = in.nextInt();
+        System.out.print("Введите возраст: ");
+        int age = in.nextInt();
+        System.out.println();
+        System.out.println("Ввыберите кандидата: ");
+        for(int i = 0;i < names.length;i++){
+            System.out.println(String.format("%d. %s",(i+1),names[i]));
+        }
+        int candidateNumber = in.nextInt();
+        String candidate = namesWithNumber.get(candidateNumber);
+        ArrayList<Voter> list = results.get(candidate);
+        list.add(createVoter(genger==1? VoterBase.Gender.Man: VoterBase.Gender.Woman,age));
+        results.put(candidate,list);
+        System.out.println("Ваш голос обработан.");
+    }
+
+    private static void showOutMenu() {
+        System.out.println("1 – Проголосовать\n" +
+                "2 – Вывести статистику\n" +
+                "3 – Выход");
     }
 
     private static void showOutStatistics() {
