@@ -25,14 +25,15 @@ public class CheckLinkedList {
         printList(list);
         list.add(5, 50);
         printList(list);
+        //noinspection unchecked
         LinkedList<Integer> subList = (LinkedList<Integer>) list.subList(0, 5);
         printList(subList);
     }
 
-    public static void printList(LinkedList<Integer> list) {
+    private static <T> void printList(LinkedList<T> list) {
         System.out.println("Size = " + list.size);
         System.out.print("Mass: ");
-        for (Integer i : list) {
+        for (T i : list) {
             System.out.print(i + " ");
         }
         System.out.println();
