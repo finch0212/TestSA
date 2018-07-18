@@ -1,29 +1,15 @@
 package Practice7;
 
-public class VoterBase implements Voter{
-    VoterBase.AgeCategory age;
+abstract class VoterBase implements Voter {
+    private AgeCategory ageCategory;
 
-    public AgeCategory getAgeCategory(){
-        return age;
+    VoterBase(int age) {
+        ageCategory = AgeCategory.valueOf(age);
     }
 
-    public void setAgeCategory(AgeCategory age) {
-        this.age = age;
+    public AgeCategory getAgeCategory() {
+        return ageCategory;
     }
 
-    public Gender getGenger(){
-        return null;
-    }
-
-    enum Gender{
-        Man,
-        Woman
-    }
-
-    enum AgeCategory{
-        Young,//18-29
-        Middle,//30-49
-        Old,//50-64
-        Pension//>65
-    }
+    public abstract Gender getGender();
 }

@@ -3,51 +3,61 @@ package Practice7;
 import java.util.*;
 
 public class Election {
-
     private static Scanner in = new Scanner(System.in);
-    private static String[] names = new String[]{"Пыня", "Сисян"};
-    private static Map<String, ArrayList<Voter>> results = new HashMap<>();
-    private static Map<Integer, String> namesWithNumber = new HashMap<>();
+    private static Map<Integer, String> candidatesById;
+    private static Map<String, List<Voter>> votersByCandidate;
+
+    static {
+        candidatesById = new LinkedHashMap<>();
+        candidatesById.put(1, "Пыня");
+        candidatesById.put(2, "Сисян");
+
+        votersByCandidate = new HashMap<>();
+        for (String candidateName : candidatesById.values()) {
+            votersByCandidate.put(candidateName, new ArrayList<>());
+        }
+    }
 
     public static void main(String[] args) {
-        init();
         while (true) {
             showOutMenu();
             switch (in.nextInt()) {
                 case 1:
-                    electionProcess();
+                    vote();
                     break;
+
                 case 2:
                     showOutStatistics();
                     break;
+
                 default:
                     return;
             }
         }
     }
 
-    private static void init() {
-        for (int i = 0; i < names.length; i++) {
-            results.put(names[i], new ArrayList<>());
-            namesWithNumber.put((i + 1), names[i]);
+    private static void vote() {
+        Gender gender = getGender();
+
+        System.out.print("\nВведите возраст: ");
+        int age = in.nextInt();
+
+        System.out.println("\nВыберите кандидата: ");
+
+        for (Map.Entry<Integer, String> entry : candidatesById.entrySet()) {
+            System.out.println(String.format("%d. %s", entry.getKey(), entry.getValue()));
         }
+        String candidateName = candidatesById.get(in.nextInt());
+
+        List<Voter> voters = votersByCandidate.get(candidateName);
+        voters.add(createVoter(gender, age));
+
+        System.out.println("Ваш голос обработан.");
     }
 
-    private static void electionProcess() {
+    private static Gender getGender() {
         System.out.println("Введите пол: " + "\n1. Мужской" + "\n2. Женский");
-        int genger = in.nextInt();
-        System.out.print("Введите возраст: ");
-        int age = in.nextInt();
-        System.out.println();
-        System.out.println("Ввыберите кандидата: ");
-        for (int i = 0; i < names.length; i++) {
-            System.out.println(String.format("%d. %s", (i + 1), names[i]));
-        }
-        String candidate = namesWithNumber.get(in.nextInt());
-        ArrayList<Voter> list = results.get(candidate);
-        list.add(createVoter(genger == 1 ? VoterBase.Gender.Man : VoterBase.Gender.Woman, age));
-        results.put(candidate, list);
-        System.out.println("Ваш голос обработан.");
+        return (in.nextInt() == 1) ? Gender.MAN : Gender.WOMAN;
     }
 
     private static void showOutMenu() {
@@ -57,34 +67,51 @@ public class Election {
     }
 
     private static void showOutStatistics() {
-        Map<String,Integer> genderResult = new HashMap<>();
-        Map<String,Integer> ageResult = new HashMap<>();
-        for(String name : names) {
-            System.out.println("Голоса за кандидата " + name + ":");
-            ArrayList<Voter> list = results.get(name);
-            for (Voter v : list) {
-                if(genderResult.containsKey(v.getGenger().toString()))
-                genderResult.put(v.getGenger().toString(),genderResult.get(v.getGenger().toString())+1);
-                else genderResult.put(v.getGenger().toString(),1);
-                if(ageResult.containsKey(v.getAgeCategory().toString()))
-                ageResult.put(v.getAgeCategory().toString(),ageResult.get(v.getAgeCategory().toString())+1);
-                else ageResult.put(v.getAgeCategory().toString(),1);
+        for (String candidateName : candidatesById.values()) {
+            System.out.println("Голоса за кандидата " + candidateName + ":");
+
+            Map<Gender, Integer> votesByGender = new HashMap<>();
+            Map<AgeCategory, Integer> votesByAge = new HashMap<>();
+            votesByGender.put(Gender.MAN,0);
+            votesByGender.put(Gender.WOMAN,0);
+            votesByAge.put(AgeCategory.YOUNG,0);
+            votesByAge.put(AgeCategory.MIDDLE,0);
+            votesByAge.put(AgeCategory.OLD,0);
+            votesByAge.put(AgeCategory.PENSION,0);
+
+            List<Voter> voters = votersByCandidate.get(candidateName);
+            for (Voter voter : voters) {
+                votesByGender.put(voter.getGender(), getVotesNumberByGender(votesByGender, voter) + 1);
+                votesByAge.put(voter.getAgeCategory(), getVotesNumberByAge(votesByAge, voter) + 1);
             }
-            System.out.println("Мужчины: " + genderResult.get("Man") + ", Женщины: " + genderResult.get("Woman"));
-            System.out.println("Young: " + ageResult.get("Young") +", Middle: " + ageResult.get(", Middle")
-                    + ", Old: " + ageResult.get("Old") +", Pension: " + ageResult.get("Pension"));
-            genderResult.clear();
-            ageResult.clear();
-            System.out.println();
+            showOutStatistics(votesByGender, votesByAge);
         }
     }
 
-    private static Voter createVoter(VoterBase.Gender gender, int age) {
-        VoterBase.AgeCategory ageCat = VoterBase.AgeCategory.Young;
-        if (age >= 18 && age <= 29) ageCat = VoterBase.AgeCategory.Young;
-        else if (age >= 30 && age <= 49) ageCat = VoterBase.AgeCategory.Middle;
-        else if (age >= 50 && age <= 64) ageCat = VoterBase.AgeCategory.Old;
-        else if (age >= 65) ageCat = VoterBase.AgeCategory.Pension;
-        return gender == VoterBase.Gender.Man ? new Man(ageCat) : new Woman(ageCat);
+    private static void showOutStatistics(Map<Gender, Integer> votesByGender, Map<AgeCategory, Integer> votesByAge) {
+        System.out.println("Мужчины: " + votesByGender.get(Gender.MAN) + ", Женщины: " + votesByGender.get(Gender.WOMAN));
+        System.out.println("YOUNG: " + votesByAge.get(AgeCategory.YOUNG) + ", MIDDLE: " + votesByAge.get(AgeCategory.MIDDLE)
+                + ", OLD: " + votesByAge.get(AgeCategory.OLD) + ", PENSION: " + votesByAge.get(AgeCategory.PENSION));
+        System.out.println();
+    }
+
+    private static Integer getVotesNumberByAge(Map<AgeCategory, Integer> votesByAge, Voter voter) {
+        Integer votesByAgeNum = votesByAge.get(voter.getAgeCategory());
+        if (votesByAgeNum == null) {
+            votesByAgeNum = 0;
+        }
+        return votesByAgeNum;
+    }
+
+    private static Integer getVotesNumberByGender(Map<Gender, Integer> votesByGender, Voter voter) {
+        Integer votesByGenderNum = votesByGender.get(voter.getGender());
+        if (votesByGenderNum == null) {
+            votesByGenderNum = 0;
+        }
+        return votesByGenderNum;
+    }
+
+    private static Voter createVoter(Gender gender, int age) {
+        return (gender == Gender.MAN) ? new Man(age) : new Woman(age);
     }
 }

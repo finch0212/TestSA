@@ -1,15 +1,12 @@
 package Practice7;
 
 public class Woman extends VoterBase{
-    private VoterBase.Gender gender;
-
-    @Override
-    public VoterBase.Gender getGenger(){
-        return  gender;
+    public Woman(int age) {
+        super(age);
     }
 
-    Woman(VoterBase.AgeCategory age){
-        this.gender = VoterBase.Gender.Woman;
-        super.age = age;
+    @Override
+    public Gender getGender(){
+        return Gender.WOMAN;
     }
 }
