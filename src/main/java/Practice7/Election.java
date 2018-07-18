@@ -58,10 +58,13 @@ public class Election {
     }
 
     private static void showOutStatistics() {
+        int count = 0;
         for (ArrayList<Voter> list : results.values()) {
+            System.out.println("Голоса за кандидата " + names[count++]);
             for (Voter v : list) {
                 System.out.println(v.getGenger() + " " + v.getAgeCategory());
             }
+            System.out.println();
         }
     }
 
