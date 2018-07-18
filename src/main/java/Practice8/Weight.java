@@ -1,6 +1,7 @@
 package Practice8;
 
 public enum Weight {
+
     LOW(0,1000),MIDDLE(1000,1600),HIGH(1600,2500),VERYHIGH(2500,Integer.MAX_VALUE);
 
     int from;
