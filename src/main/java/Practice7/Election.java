@@ -28,7 +28,7 @@ public class Election {
 
     private static void init() {
         for (int i = 0; i < names.length; i++) {
-            results.put(names[i], new ArrayList<Voter>());
+            results.put(names[i], new ArrayList<>());
             namesWithNumber.put((i + 1), names[i]);
         }
     }
@@ -43,8 +43,7 @@ public class Election {
         for (int i = 0; i < names.length; i++) {
             System.out.println(String.format("%d. %s", (i + 1), names[i]));
         }
-        int candidateNumber = in.nextInt();
-        String candidate = namesWithNumber.get(candidateNumber);
+        String candidate = namesWithNumber.get(in.nextInt());
         ArrayList<Voter> list = results.get(candidate);
         list.add(createVoter(genger == 1 ? VoterBase.Gender.Man : VoterBase.Gender.Woman, age));
         results.put(candidate, list);
@@ -58,19 +57,30 @@ public class Election {
     }
 
     private static void showOutStatistics() {
-        int count = 0;
-        for (ArrayList<Voter> list : results.values()) {
-            System.out.println("Голоса за кандидата " + names[count++]);
+        Map<String,Integer> genderResult = new HashMap<>();
+        Map<String,Integer> ageResult = new HashMap<>();
+        for(String name : names) {
+            System.out.println("Голоса за кандидата " + name + ":");
+            ArrayList<Voter> list = results.get(name);
             for (Voter v : list) {
-                System.out.println(v.getGenger() + " " + v.getAgeCategory());
+                if(genderResult.containsKey(v.getGenger().toString()))
+                genderResult.put(v.getGenger().toString(),genderResult.get(v.getGenger().toString())+1);
+                else genderResult.put(v.getGenger().toString(),1);
+                if(ageResult.containsKey(v.getAgeCategory().toString()))
+                ageResult.put(v.getAgeCategory().toString(),ageResult.get(v.getAgeCategory().toString())+1);
+                else ageResult.put(v.getAgeCategory().toString(),1);
             }
+            System.out.println("Мужчины: " + genderResult.get("Man") + ", Женщины: " + genderResult.get("Woman"));
+            System.out.println("Young: " + ageResult.get("Young") +", Middle: " + ageResult.get(", Middle")
+                    + ", Old: " + ageResult.get("Old") +", Pension: " + ageResult.get("Pension"));
+            genderResult.clear();
+            ageResult.clear();
             System.out.println();
         }
     }
 
     private static Voter createVoter(VoterBase.Gender gender, int age) {
         VoterBase.AgeCategory ageCat = VoterBase.AgeCategory.Young;
-        ;
         if (age >= 18 && age <= 29) ageCat = VoterBase.AgeCategory.Young;
         else if (age >= 30 && age <= 49) ageCat = VoterBase.AgeCategory.Middle;
         else if (age >= 50 && age <= 64) ageCat = VoterBase.AgeCategory.Old;
