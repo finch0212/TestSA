@@ -1,13 +1,13 @@
 package Practice8;
 
-public class FactoryAudi implements Factory{
+public class FactoryAudi implements Factory {
 
     @Override
     public Car createCar() {
         return new AudiR8();
     }
 
-    class AudiR8 implements Car{
+    class AudiR8 implements Car {
 
         @Override
         public String getMarkName() {
@@ -35,7 +35,7 @@ public class FactoryAudi implements Factory{
         }
     }
 
-    class AudiTTRS implements Car{
+    class AudiTTRS implements Car {
 
         @Override
         public String getMarkName() {

@@ -7,7 +7,7 @@ public class FacroryVolvo implements Factory {
         return new VolvoV40();
     }
 
-    class VolvoV40 implements Car{
+    class VolvoV40 implements Car {
 
         @Override
         public String getMarkName() {
@@ -35,7 +35,7 @@ public class FacroryVolvo implements Factory {
         }
     }
 
-    class VolvoXC90 implements Car{
+    class VolvoXC90 implements Car {
 
         @Override
         public String getMarkName() {

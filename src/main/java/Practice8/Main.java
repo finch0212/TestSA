@@ -49,75 +49,20 @@ public class Main {
                 "4. По весовому диапазону");
         switch (in.nextInt()) {
             case 1:
-                showCarsByMarks();
+                Mark.showCarsByProperty(cars);
                 break;
 
             case 2:
-                showCarsByPrice();
+                Price.showCarsByProperty(cars);
                 break;
 
             case 3:
-                showCarsBySpeed();
+                Speed.showCarsByProperty(cars);
                 break;
 
             case 4:
-                showCarsByWeight();
+                Weight.showCarsByProperty(cars);
                 break;
-        }
-    }
-
-    private static void showCarsByWeight() {
-        Map<Weight, Integer> countByWeight = new LinkedHashMap<>();
-        for (Weight weight : Weight.values()) {
-            countByWeight.put(weight, 0);
-        }
-        for (Car car : cars) {
-            Weight currWeight = Weight.valueOf(car.getWeight());
-            countByWeight.put(currWeight, countByWeight.get(currWeight) + 1);
-        }
-        for (Map.Entry<Weight, Integer> entry : countByWeight.entrySet()) {
-            System.out.println(String.format("%s: %d", entry.getKey().toString(), entry.getValue()));
-        }
-    }
-
-    private static void showCarsBySpeed() {
-        Map<Speed, Integer> countBySpeed = new LinkedHashMap<>();
-        for (Speed speed : Speed.values()) {
-            countBySpeed.put(speed, 0);
-        }
-        for (Car car : cars) {
-            Speed currSpeed = Speed.valueOf(car.getMaxSpeed());
-            countBySpeed.put(currSpeed, countBySpeed.get(currSpeed) + 1);
-        }
-        for (Map.Entry<Speed, Integer> entry : countBySpeed.entrySet()) {
-            System.out.println(String.format("%s: %d", entry.getKey().toString(), entry.getValue()));
-        }
-    }
-
-    private static void showCarsByPrice() {
-        Map<Price, Integer> countByPrice = new LinkedHashMap<>();
-        for (Price price : Price.values()) {
-            countByPrice.put(price, 0);
-        }
-        for (Car car : cars) {
-            Price currPrice = Price.valueOf(car.getPrice());
-            countByPrice.put(currPrice, countByPrice.get(currPrice) + 1);
-        }
-        for (Map.Entry<Price, Integer> entry : countByPrice.entrySet()) {
-            System.out.println(String.format("%s: %d", entry.getKey().toString(), entry.getValue()));
-        }
-    }
-
-    private static void showCarsByMarks() {
-        Map<String, Integer> countByMarks = new LinkedHashMap<>();
-        for (Mark mark : Mark.values()) {
-            countByMarks.put(mark.toString(), 0);
-        }
-        for (Car car : cars) {
-            countByMarks.put(car.getMarkName().toUpperCase(), countByMarks.get(car.getMarkName().toUpperCase()) + 1);
-        }
-        for (Map.Entry<String, Integer> entry : countByMarks.entrySet()) {
-            System.out.println(String.format("%s: %d", entry.getKey(), entry.getValue()));
         }
     }
 

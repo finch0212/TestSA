@@ -6,7 +6,7 @@ public class FactoryMazda implements Factory {
         return new MazdaCX5();
     }
 
-    class MazdaCX5 implements Car{
+    class MazdaCX5 implements Car {
 
         @Override
         public String getMarkName() {
@@ -34,7 +34,7 @@ public class FactoryMazda implements Factory {
         }
     }
 
-    class Mazda3 implements Car{
+    class Mazda3 implements Car {
 
         @Override
         public String getMarkName() {
@@ -58,7 +58,7 @@ public class FactoryMazda implements Factory {
 
         @Override
         public int getPrice() {
-            return  1271000;
+            return 1271000;
         }
     }
 }
