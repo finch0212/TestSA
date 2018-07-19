@@ -1,3 +1,4 @@
 *.class
 misc.xml
-workspace.xml
+.idea
+testSA.iml
