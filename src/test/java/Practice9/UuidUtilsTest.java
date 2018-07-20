@@ -75,4 +75,10 @@ public class UuidUtilsTest {
         String result = UuidUtils.convert("{12345678-1234-1234-1234-1234567890AB}", UuidPattern.FRAMED_DIVIDED_UUID, UuidPattern.UUID);
         Assert.assertEquals("123456781234123412341234567890AB", result);
     }
+
+    @Test
+    public void convert_InvalidFormat() {
+        String result = UuidUtils.convert("{ABCDEFG}", UuidPattern.UUID, UuidPattern.FRAMED_DIVIDED_UUID);
+        Assert.assertEquals("{ABCDEFG}", result);
+    }
 }
