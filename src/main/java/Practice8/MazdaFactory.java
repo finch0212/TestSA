@@ -1,18 +1,19 @@
 package Practice8;
 
-public class FactoryMazda implements Factory {
+public class MazdaFactory implements Factory {
+    private static abstract class MazdaCar implements Car {
+        @Override
+        public Mark getMark() {
+            return Mark.MAZDA;
+        }
+    }
+
     @Override
     public Car createCar() {
         return new MazdaCX5();
     }
 
-    class MazdaCX5 implements Car {
-
-        @Override
-        public String getMarkName() {
-            return "Mazda";
-        }
-
+    class MazdaCX5 extends MazdaCar {
         @Override
         public String getModelName() {
             return "CX-5";
@@ -34,13 +35,7 @@ public class FactoryMazda implements Factory {
         }
     }
 
-    class Mazda3 implements Car {
-
-        @Override
-        public String getMarkName() {
-            return "Mazda";
-        }
-
+    class Mazda3 extends MazdaCar {
         @Override
         public String getModelName() {
             return "Model 3";

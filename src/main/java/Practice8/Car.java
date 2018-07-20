@@ -1,7 +1,7 @@
 package Practice8;
 
 public interface Car {
-    String getMarkName();
+    Mark getMark();
 
     String getModelName();
 

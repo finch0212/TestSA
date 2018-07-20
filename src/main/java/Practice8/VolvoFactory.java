@@ -1,19 +1,20 @@
 package Practice8;
 
-public class FacroryVolvo implements Factory {
+public class VolvoFactory implements Factory {
+
+    private static abstract class VolvoCar implements Car {
+        @Override
+        public Mark getMark() {
+            return Mark.VOLVO;
+        }
+    }
 
     @Override
     public Car createCar() {
         return new VolvoV40();
     }
 
-    class VolvoV40 implements Car {
-
-        @Override
-        public String getMarkName() {
-            return "Volvo";
-        }
-
+    class VolvoV40 extends VolvoCar {
         @Override
         public String getModelName() {
             return "V40 Cross Country T3";
@@ -35,13 +36,7 @@ public class FacroryVolvo implements Factory {
         }
     }
 
-    class VolvoXC90 implements Car {
-
-        @Override
-        public String getMarkName() {
-            return "Volvo";
-        }
-
+    class VolvoXC90 extends VolvoCar {
         @Override
         public String getModelName() {
             return "XC90 Excellence";

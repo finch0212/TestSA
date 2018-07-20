@@ -28,12 +28,14 @@ public enum Price {
         for (Price price : Price.values()) {
             countByPrice.put(price, 0);
         }
+
         for (Car car : cars) {
             Price currPrice = Price.valueOf(car.getPrice());
             countByPrice.put(currPrice, countByPrice.get(currPrice) + 1);
         }
+
         for (Map.Entry<Price, Integer> entry : countByPrice.entrySet()) {
-            System.out.println(String.format("%s: %d", entry.getKey().toString(), entry.getValue()));
+            System.out.println(String.format("%s: %d", entry.getKey(), entry.getValue()));
         }
     }
 }

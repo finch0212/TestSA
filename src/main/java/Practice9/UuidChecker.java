@@ -1,14 +1,10 @@
 package Practice9;
 
 import java.util.UUID;
-import java.util.regex.*;
 
-public class RegEx {
-
-    private static String math1 = "1+i, 2 -3i, 5  + 10i";
+public class UuidChecker {
 
     public static void main(String[] args) {
-        //System.out.println(test1(math1));
         uuidTest();
     }
 
@@ -34,17 +30,4 @@ public class RegEx {
         UuidUtils.convert(uuid, UuidPattern.UUID, UuidPattern.DIVIDED_UUID);
         UuidUtils.convert(uuid, UuidPattern.UUID, UuidPattern.FRAMED_DIVIDED_UUID);
     }
-
-    private static boolean test1(String testString){
-        //Pattern p = Pattern.compile("^[0-9]*\\s*[-+]\\s*[0-9]*i[,\\s*[0-9]*\\s*[-+]\\s*[0-9]*i]*$");
-        Pattern p = Pattern.compile("^([0-9]*\\s*[-+]\\s*[0-9]*i)[,\\s*(\\1)]*$");
-        Matcher m = p.matcher(testString);
-        return m.matches();
-    }
-
-
-
-
 }
-
-

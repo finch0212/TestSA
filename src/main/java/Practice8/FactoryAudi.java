@@ -1,17 +1,25 @@
 package Practice8;
 
+import java.util.Random;
+
 public class FactoryAudi implements Factory {
 
     @Override
     public Car createCar() {
-        return new AudiR8();
+        switch (new Random().nextInt(2)) {
+            case 0:
+                return new AudiR8();
+
+            default:
+                return new AudiTTRS();
+        }
     }
 
     class AudiR8 implements Car {
 
         @Override
-        public String getMarkName() {
-            return "Audi";
+        public Mark getMark() {
+            return Mark.AUDI;
         }
 
         @Override
@@ -38,8 +46,8 @@ public class FactoryAudi implements Factory {
     class AudiTTRS implements Car {
 
         @Override
-        public String getMarkName() {
-            return "Audi";
+        public Mark getMark() {
+            return Mark.AUDI;
         }
 
         @Override

@@ -28,12 +28,14 @@ public enum Weight {
         for (Weight weight : Weight.values()) {
             countByWeight.put(weight, 0);
         }
+
         for (Car car : cars) {
             Weight currWeight = Weight.valueOf(car.getWeight());
             countByWeight.put(currWeight, countByWeight.get(currWeight) + 1);
         }
+
         for (Map.Entry<Weight, Integer> entry : countByWeight.entrySet()) {
-            System.out.println(String.format("%s: %d", entry.getKey().toString(), entry.getValue()));
+            System.out.println(String.format("%s: %d", entry.getKey(), entry.getValue()));
         }
     }
 }

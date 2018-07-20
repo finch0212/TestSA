@@ -28,12 +28,14 @@ public enum Speed {
         for (Speed speed : Speed.values()) {
             countBySpeed.put(speed, 0);
         }
+
         for (Car car : cars) {
             Speed currSpeed = Speed.valueOf(car.getMaxSpeed());
             countBySpeed.put(currSpeed, countBySpeed.get(currSpeed) + 1);
         }
+
         for (Map.Entry<Speed, Integer> entry : countBySpeed.entrySet()) {
-            System.out.println(String.format("%s: %d", entry.getKey().toString(), entry.getValue()));
+            System.out.println(String.format("%s: %d", entry.getKey(), entry.getValue()));
         }
     }
 }
